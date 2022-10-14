@@ -24,7 +24,7 @@ checks = {
             "column": "webapp",
             "type": "javascript",
             "url": "https://northernclimatereports.org/report/community/AK124#results",
-            "test": """
+            "javascript": """
                return _.reduce(document.querySelectorAll('.report--temperature tbody td'), (acc, cur) => {
                     let temperature = parseFloat(cur.textContent.match(/[0-9\.]+(?=\u00b0F)/)[0])
                     return acc && _.inRange(temperature, 0, 100)
@@ -36,14 +36,14 @@ checks = {
             "column": "webapp",
             "type": "javascript",
             "url": "https://northernclimatereports.org/report/community/AK124#results",
-            "test": "return document.querySelectorAll('#precip-chart .legend .traces').length > 5",
+            "javascript": "return document.querySelectorAll('#precip-chart .legend .traces').length > 5",
             "text": "Temperature chart is populated."
         },
         {
             "column": "webapp",
             "type": "javascript",
             "url": "https://northernclimatereports.org/report/community/AK124#results",
-            "test": """
+            "javascript": """
                 return _.reduce(document.querySelectorAll('#precipitation tbody td'), (acc, cur) => {
                     let precipitation = parseFloat(cur.textContent.match(/[0-9\.]+(?=in)/)[0])
                     return acc && _.inRange(precipitation, 0, 20)
@@ -55,7 +55,68 @@ checks = {
             "column": "webapp",
             "type": "javascript",
             "url": "https://northernclimatereports.org/report/community/AK124#results",
-            "test": "return document.querySelectorAll('#precip-chart .legend .traces').length > 5",
+            "javascript": """
+                return _.filter(document.querySelectorAll('#permafrost .leaflet-tile-loaded'), (tile) => {
+                    return tile.src.indexOf('gipl') != -1
+                }).length > 20
+            """,
+            "text": "Permafrost mini-maps loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://northernclimatereports.org/report/community/AK124#results",
+            "javascript": "return document.querySelectorAll('#permafrost-alt-thaw-chart .legend .traces').length > 5",
+            "text": "Permafrost active layer thickness chart is populated."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://northernclimatereports.org/report/community/AK124#results",
+            "javascript": "return document.querySelectorAll('#permafrost-alt-freeze-chart .legend .traces').length > 5",
+            "text": "Permafrost ground freeze depth chart is populated."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://northernclimatereports.org/report/community/AK124#results",
+            "javascript": """
+                return _.filter(document.querySelectorAll('#wildfire .leaflet-tile-loaded'), (tile) => {
+                    return tile.src.indexOf('flammability') != -1
+                }).length > 20
+            """,
+            "text": "Flammability mini-maps loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://northernclimatereports.org/report/community/AK124#results",
+            "javascript": "return document.querySelectorAll('#wildfire-flammability-chart .legend .traces').length > 5",
+            "text": "Flammability chart is populated."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://northernclimatereports.org/report/community/AK124#results",
+            "javascript": """
+                return _.filter(document.querySelectorAll('#wildfire .leaflet-tile-loaded'), (tile) => {
+                    return tile.src.indexOf('vegetation') != -1
+                }).length > 20
+            """,
+            "text": "Vegetation type mini-maps loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://northernclimatereports.org/report/community/AK124#results",
+            "javascript": "return document.querySelectorAll('#wildfire-veg-change-chart .legend .traces').length > 5",
+            "text": "Vegetation type chart is populated."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://northernclimatereports.org/report/community/AK124#results",
+            "javascript": "return document.querySelectorAll('#precip-chart .legend .traces').length > 5",
             "text": "Precipitation chart is populated."
         },
         {
@@ -111,43 +172,43 @@ checks = {
             "type": "json",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/alfresco/veg_type/point/65.0628/-146.1627",
             "text": "Vegetation type API endpoint JSON is valid."
-        },
+        }
     ],
     "production-fire-tally.us-west-2.elasticbeanstalk.com": [
         {
             "column": "webapp",
             "type": "javascript",
             "url": "https://snap.uaf.edu/tools/daily-fire-tally",
-            "test": "return document.querySelectorAll('#tally .legendlines').length > 5",
+            "javascript": "return document.querySelectorAll('#tally .legendlines').length > 5",
             "text": "Statewide daily tally chart is populated."
         },
         {
             "column": "webapp",
             "type": "javascript",
             "url": "https://snap.uaf.edu/tools/daily-fire-tally",
-            "test": "return document.querySelectorAll('#tally-zone .legendlines').length > 5",
+            "javascript": "return document.querySelectorAll('#tally-zone .legendlines').length > 5",
             "text": "Daily tally by protection chart graph is populated."
         },
         {
             "column": "webapp",
             "type": "javascript",
             "url": "https://snap.uaf.edu/tools/daily-fire-tally",
-            "test": "return document.querySelectorAll('#tally-year .legendlines').length > 5",
+            "javascript": "return document.querySelectorAll('#tally-year .legendlines').length > 5",
             "text": "Daily tally by year chart is populated."
         },
     ]
 }
 
-def javascriptCheck(check):
+def javascriptTest(check):
     try:
         driver.get(check["url"])
         time.sleep(10)
-        return driver.execute_script(check["test"])
+        return driver.execute_script(check["javascript"])
     except:
         return False
 
 
-def csvCheck(check):
+def csvTest(check):
     try:
         response = requests.get(check["url"])
         no_metadata = []
@@ -161,7 +222,7 @@ def csvCheck(check):
         return False
 
 
-def jsonCheck(check):
+def jsonTest(check):
     try:
         response = requests.get(check["url"])
         results = response.json()
@@ -180,11 +241,11 @@ for machine in checks.keys():
             messages[column] = ""
 
         if check["type"] == "javascript":
-            success = javascriptCheck(check)
+            success = javascriptTest(check)
         elif check["type"] == "json":
-            success = jsonCheck(check)
+            success = jsonTest(check)
         elif check["type"] == "csv":
-            success = csvCheck(check)
+            success = csvTest(check)
 
         if success == True:
             messages[column] += pass_icon + " " + check["text"] + "\n"
