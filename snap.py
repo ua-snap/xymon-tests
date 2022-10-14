@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 import csv
 import os
 import subprocess
@@ -15,13 +15,13 @@ options = Options()
 options.headless = True
 driver = webdriver.Firefox(options=options, executable_path="/usr/bin/geckodriver", service_log_path="/tmp/geckodriver.log")
 
-pass_icon = '<img src="/xymon/gifs/static/green.gif" alt="green" height="16" width="16" border="0">'
-fail_icon = '<img src="/xymon/gifs/static/red.gif" alt="green" height="16" width="16" border="0">'
+pass_icon = '<img src="/xymon/gifs/green.gif" alt="green" height="16" width="16" border="0">'
+fail_icon = '<img src="/xymon/gifs/red.gif" alt="green" height="16" width="16" border="0">'
 
 checks = {
     "northernclimatereports.org": [
         {
-            "column": "frontend",
+            "column": "webapp",
             "type": "javascript",
             "url": "https://northernclimatereports.org/report/community/AK124#results",
             "test": """
@@ -33,14 +33,14 @@ checks = {
             "text": "Temperature table values are valid."
         },
         {
-            "column": "frontend",
+            "column": "webapp",
             "type": "javascript",
             "url": "https://northernclimatereports.org/report/community/AK124#results",
             "test": "return document.querySelectorAll('#precip-chart .legend .traces').length > 5",
             "text": "Temperature chart is populated."
         },
         {
-            "column": "frontend",
+            "column": "webapp",
             "type": "javascript",
             "url": "https://northernclimatereports.org/report/community/AK124#results",
             "test": """
@@ -52,62 +52,62 @@ checks = {
             "text": "Precipitation table values are valid."
         },
         {
-            "column": "frontend",
+            "column": "webapp",
             "type": "javascript",
             "url": "https://northernclimatereports.org/report/community/AK124#results",
             "test": "return document.querySelectorAll('#precip-chart .legend .traces').length > 5",
             "text": "Precipitation chart is populated."
         },
         {
-            "column": "backend",
+            "column": "webapp",
             "type": "csv",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/temperature/point/65.0628/-146.1627?format=csv",
             "text": "Temperature API endpoint CSV is valid."
         },
         {
-            "column": "backend",
+            "column": "webapp",
             "type": "csv",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/precipitation/point/65.0628/-146.1627?format=csv",
             "text": "Precipitation API endpoint CSV is valid."
         },
         {
-            "column": "backend",
+            "column": "webapp",
             "type": "csv",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/permafrost/point/65.0628/-146.1627?format=csv",
             "text": "Permafrost API endpoint CSV is valid."
         },
         {
-            "column": "backend",
+            "column": "webapp",
             "type": "csv",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/alfresco/flammability/point/65.0628/-146.1627?format=csv",
             "text": "Flammability API endpoint CSV is valid."
         },
         {
-            "column": "backend",
+            "column": "webapp",
             "type": "csv",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/alfresco/veg_type/point/65.0628/-146.1627?format=csv",
             "text": "Vegetation type API endpoint CSV is valid."
         },
         {
-            "column": "backend",
+            "column": "webapp",
             "type": "json",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/taspr/point/65.0628/-146.1627",
             "text": "Temperature and precipitation API endpoint JSON is valid."
         },
         {
-            "column": "backend",
+            "column": "webapp",
             "type": "json",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/permafrost/point/65.0628/-146.1627",
             "text": "Permafrost API endpoint JSON is valid."
         },
         {
-            "column": "backend",
+            "column": "webapp",
             "type": "json",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/alfresco/flammability/point/65.0628/-146.1627",
             "text": "Flammability API endpoint JSON is valid."
         },
         {
-            "column": "backend",
+            "column": "webapp",
             "type": "json",
             "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/alfresco/veg_type/point/65.0628/-146.1627",
             "text": "Vegetation type API endpoint JSON is valid."
@@ -115,21 +115,21 @@ checks = {
     ],
     "production-fire-tally.us-west-2.elasticbeanstalk.com": [
         {
-            "column": "frontend",
+            "column": "webapp",
             "type": "javascript",
             "url": "https://snap.uaf.edu/tools/daily-fire-tally",
             "test": "return document.querySelectorAll('#tally .legendlines').length > 5",
             "text": "Statewide daily tally chart is populated."
         },
         {
-            "column": "frontend",
+            "column": "webapp",
             "type": "javascript",
             "url": "https://snap.uaf.edu/tools/daily-fire-tally",
             "test": "return document.querySelectorAll('#tally-zone .legendlines').length > 5",
             "text": "Daily tally by protection chart graph is populated."
         },
         {
-            "column": "frontend",
+            "column": "webapp",
             "type": "javascript",
             "url": "https://snap.uaf.edu/tools/daily-fire-tally",
             "test": "return document.querySelectorAll('#tally-year .legendlines').length > 5",
@@ -170,10 +170,9 @@ def jsonCheck(check):
         return False
 
 
-colors = {}
-messages = {}
-
 for machine in checks.keys():
+    colors = {}
+    messages = {}
     for check in checks[machine]:
         column = check["column"]
         if check["column"] not in colors:
@@ -194,9 +193,9 @@ for machine in checks.keys():
             messages[column] += fail_icon + " " + check["text"] + "\n"
 
     for column in colors.keys():
-        date = subprocess.check_output(["date"])
+        date = subprocess.check_output(["date"]).decode("ascii")
         machine_safe = machine.replace(".", ",")
-        status = "status {}.{} {} {}\n\n{}".format(
+        status = "status {}.{} {} {}\n{}".format(
             machine,
             column,
             colors[column],
