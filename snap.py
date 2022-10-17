@@ -36,7 +36,7 @@ checks = {
             "column": "webapp",
             "type": "javascript",
             "url": "https://northernclimatereports.org/report/community/AK124#results",
-            "javascript": "return document.querySelectorAll('#precip-chart .legend .traces').length > 5",
+            "javascript": "return document.querySelectorAll('#temp-chart .legend .traces').length > 5",
             "text": "Temperature chart is populated."
         },
         {
@@ -50,6 +50,13 @@ checks = {
                 })
             """,
             "text": "Precipitation table values are valid."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://northernclimatereports.org/report/community/AK124#results",
+            "javascript": "return document.querySelectorAll('#precip-chart .legend .traces').length > 5",
+            "text": "Precipitation chart is populated."
         },
         {
             "column": "webapp",
@@ -196,7 +203,86 @@ checks = {
             "javascript": "return document.querySelectorAll('#tally-year .legendlines').length > 5",
             "text": "Daily tally by year chart is populated."
         },
-    ]
+    ],
+    "arcticeds.org": [
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/climate/precipitation",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Precipitation map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/climate/snowfall",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Snowfall map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/climate/temperature",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Temperature map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/engineering/design-freezing-index",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Design freezing index map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/engineering/design-thawing-index",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Design thawing index map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/engineering/freezing-index",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Freezing index map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/engineering/thawing-index",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Thawing index map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/engineering/heating-degree-days",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Heating degree days map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/physiography/ecoregions",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Ecoregions map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/physiography/geology",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Geology map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://arcticeds.org/physiography/permafrost",
+            "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
+            "text": "Permafrost map loaded."
+        },
+    ],
 }
 
 def javascriptTest(check):
