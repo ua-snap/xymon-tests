@@ -211,10 +211,136 @@ checks = {
         },
         {
             "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=annual_precip_totals_mm&styles=precip_mm_midcentury_era&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_precip&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Projected precipitation map layer accessible."
+        },
+        {
+            "column": "webapp",
             "type": "javascript",
             "url": "https://arcticeds.org/climate/snowfall",
             "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
             "text": "Snowfall map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=mean_annual_snowfall_mm&styles=snowfall_mm&format=image%2Fpng&transparent=true&version=1.3.0&id=future_mean_annual_snowfall&dim_model=4&dim_scenario=3&dim_decade=18&width=256&height=256&crs=EPSG%3A3338&bbox=70586,969097,594874,1493385",
+            "text": "Projected snowfall map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=annual_mean_temp&styles=temp_midcentury_era&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_annual_mean_temp&width=256&height=256&crs=EPSG%3A3338&bbox=70586,969097,594874,1493385",
+            "text": "Projected mean annual temperature map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=jan_min_max_mean_temp&styles=temp_historical_january_min&format=image%2Fpng&transparent=true&version=1.3.0&id=historical_era_january_min&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Historical January minimum temperature map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=july_min_max_mean_temp&styles=temp_historical_july_min&format=image%2Fpng&transparent=true&version=1.3.0&id=historical_era_july_min&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Historical July minimum temperature map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=jan_min_max_mean_temp&styles=temp_historical_january_max&format=image%2Fpng&transparent=true&version=1.3.0&id=historical_era_january_max&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Historical January maximum temperature map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=july_min_max_mean_temp&styles=temp_historical_july_max&format=image%2Fpng&transparent=true&version=1.3.0&id=historical_era_july_max&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Historical July maximum temperature map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=jan_min_max_mean_temp&styles=temp_midcentury_january_min&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_january_min&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,201767",
+            "text": "Projected January minimum temperature map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=july_min_max_mean_temp&styles=temp_midcentury_july_min&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_july_min&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,201767",
+            "text": "Projected July minimum temperature map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=jan_min_max_mean_temp&styles=temp_midcentury_january_max&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_january_max&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,201767",
+            "text": "Projected January maximum temperature map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=july_min_max_mean_temp&styles=temp_midcentury_july_max&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_july_max&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Projected July maximum temperature map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=design_freezing_index&styles=arctic_eds&format=image%2Fpng&transparent=true&version=1.3.0&id=ncarccsm4_design_freezing_index&dim_model=2&dim_era=2&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Projected design freezing index map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=design_thawing_index&styles=arctic_eds&format=image%2Fpng&transparent=true&version=1.3.0&id=ncarccsm4_design_thawing_index&dim_model=2&dim_era=2&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Projected design thawing index map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=freezing_index&styles=arctic_eds_freezing_index_future_condensed&format=image%2Fpng&transparent=true&version=1.3.0&id=ncarccsm4_freezing_index_midcentury&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Projected freezing index map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=thawing_index&styles=arctic_eds_thawing_index_future_condensed_compressed&format=image%2Fpng&transparent=true&version=1.3.0&id=ncarccsm4_thawing_index_midcentury&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Projected thawing index map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=heating_degree_days&styles=arctic_eds_heating_degree_days_future_condensed_compressed&format=image%2Fpng&transparent=true&version=1.3.0&id=ncarccsm4_heating_degree_days&dim_model=2&dim_era=2&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Projected heating degree days map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=permafrost_beta%3Aobu_pf_extent&styles=&format=image%2Fpng&transparent=true&version=1.3.0&id=pfextent_obu&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Permafrost extent (Obu) map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=iem_gipl_magt_alt_4km&styles=arctic_eds_MAGT&format=image%2Fpng&transparent=true&version=1.3.0&id=iem_gipl_magt_alt_4km_historical&dim_model=0&dim_scenario=0&dim_era=0&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Mean annual ground temperature (1986-2005) map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://zeus.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=iem_gipl_magt_alt_4km&styles=arctic_eds_MAGT&format=image%2Fpng&transparent=true&version=1.3.0&id=iem_gipl_magt_alt_4km_2036_2065&dim_model=5&dim_scenario=2&dim_era=2&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Mean annual ground temperature (2036-2065) map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=obu_2018_magt&styles=ground_temperature_blue_to_red_arctic_eds&format=image%2Fpng&transparent=true&version=1.3.0&id=obumagt&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Mean annual ground temperature at top map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=permafrost_beta%3Ajorgenson_2008_pf_extent_ground_ice_volume&styles=permafrost_beta%3Aground_ice_volume&format=image%2Fpng&transparent=true&version=1.3.0&id=icevol_jorgenson&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Ground ice volume map layer accessible."
         },
         {
             "column": "webapp",
@@ -314,6 +440,14 @@ def jsonTest(check):
         return False
 
 
+def urlTest(check):
+    try:
+        response = requests.get(check["url"])
+        return response.status_code == 200
+    except:
+        return False
+
+
 for machine in checks.keys():
     colors = {}
     messages = {}
@@ -329,6 +463,8 @@ for machine in checks.keys():
             success = jsonTest(check)
         elif check["type"] == "csv":
             success = csvTest(check)
+        elif check["type"] == "url":
+            success = urlTest(check)
 
         if success == True:
             messages[column] += "&green " + check["text"] + "\n"
