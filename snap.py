@@ -83,7 +83,7 @@ checks = {
         {
             "column": "webapp",
             "type": "javascript",
-            "url": "https://northernclimatereports.org/report_bad/community/AK124#results",
+            "url": "https://northernclimatereports.org/report/community/AK124#results",
             "javascript": """
                 return _.filter(document.querySelectorAll('#wildfire .leaflet-tile-loaded'), (tile) => {
                     return tile.src.indexOf('flammability') != -1
