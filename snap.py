@@ -15,9 +15,6 @@ options = Options()
 options.headless = True
 driver = webdriver.Firefox(options=options, executable_path="/usr/bin/geckodriver", service_log_path="/tmp/geckodriver.log")
 
-pass_icon = '<img src="/xymon/gifs/green.gif" alt="green" height="16" width="16" border="0">'
-fail_icon = '<img src="/xymon/gifs/red.gif" alt="green" height="16" width="16" border="0">'
-
 checks = {
     "northernclimatereports.org": [
         {
@@ -86,7 +83,7 @@ checks = {
         {
             "column": "webapp",
             "type": "javascript",
-            "url": "https://northernclimatereports.org/report/community/AK124#results",
+            "url": "https://northernclimatereports.org/report_bad/community/AK124#results",
             "javascript": """
                 return _.filter(document.querySelectorAll('#wildfire .leaflet-tile-loaded'), (tile) => {
                     return tile.src.indexOf('flammability') != -1
@@ -334,10 +331,10 @@ for machine in checks.keys():
             success = csvTest(check)
 
         if success == True:
-            messages[column] += pass_icon + " " + check["text"] + "\n"
+            messages[column] += "&green " + check["text"] + "\n"
         else:
             colors[column] = "red"
-            messages[column] += fail_icon + " " + check["text"] + "\n"
+            messages[column] += "&red " + check["text"] + "\n"
 
     for column in colors.keys():
         date = subprocess.check_output(["date"]).decode("ascii")
