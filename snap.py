@@ -245,6 +245,18 @@ checks = {
         {
             "column": "webapp",
             "type": "javascript",
+            "url": "https://arcticeds.org/climate/temperature/report/63.1429/-154.9583#report",
+            "javascript": """
+               return _.reduce(document.querySelectorAll('#report tbody td'), (acc, cur) => {
+                    let temperature = parseFloat(cur.textContent.match(/[0-9\.]+(?=\u00b0F)/)[0])
+                    return acc && _.inRange(temperature, -80, 120)
+                })
+            """,
+            "text": "Temperature table populated."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
             "url": "https://arcticeds.org/engineering/design-freezing-index",
             "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
             "text": "Design freezing index map loaded."
@@ -333,18 +345,6 @@ checks = {
             "type": "url",
             "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=permafrost_beta%3Aobu_pf_extent&styles=&format=image%2Fpng&transparent=true&version=1.3.0&id=pfextent_obu&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Permafrost extent (Obu) map layer accessible."
-        },
-        {
-            "column": "webapp",
-            "type": "javascript",
-            "url": "https://arcticeds.org/climate/temperature/report/63.1429/-154.9583#report",
-            "javascript": """
-               return _.reduce(document.querySelectorAll('#report tbody td'), (acc, cur) => {
-                    let temperature = parseFloat(cur.textContent.match(/[0-9\.]+(?=\u00b0F)/)[0])
-                    return acc && _.inRange(temperature, -80, 120)
-                })
-            """,
-            "text": "Temperature table populated."
         },
     ],
     "seaiceatlas.snap.uaf.edu": [
@@ -582,7 +582,7 @@ checks = {
             "column": "webapp",
             "type": "javascript",
             "url": "http://windtool.accap.uaf.edu/",
-            "javascript": "return document.querySelectorAll('#future_delta_percentiles_graph g').length > 100",
+            "javascript": "return document.querySelectorAll('#future_delta_percentiles g').length > 80",
             "text": "Modeled past and future wind plot populated."
         },
         {
@@ -593,6 +593,93 @@ checks = {
             "text": "Modeled wind speed plot populated."
         },
     ],
+    "living-off-the-land.s3-website-us-west-2.amazonaws.com": [
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://snap.uaf.edu/tools/living-off-the-land",
+            "javascript": "return document.querySelectorAll('#ice-and-snow__map path').length > 100",
+            "text": "Ice observations map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=nasa_above%3Awintertemp_2010s_tcc&styles=&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Winter temperature (2010) map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://snap.uaf.edu/tools/living-off-the-land",
+            "javascript": "return document.querySelectorAll('#snowday-fraction-map__map path').length > 80",
+            "text": "Snow observations map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=nasa_above%3AOct_snowdayfraction_2010s_tcc_reprojected&styles=&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Snow observations (2010) map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://snap.uaf.edu/tools/living-off-the-land",
+            "javascript": "return document.querySelectorAll('#permafrost-map__map path').length > 150",
+            "text": "Permafrost map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=nasa_above%3AJuly_permafrost_2m_2010s_tcc&styles=&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Permafrost (2010) map layer accessible."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://snap.uaf.edu/tools/living-off-the-land",
+            "javascript": "return document.querySelectorAll('#historical-fires__map path').length > 40",
+            "text": "Historical fire map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Ahistorical_fire_perimiters&styles=fire_history_70s_2010s&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "text": "Historical fires map layer accessible."
+        },
+    ],
+    "production-dot-precip-dash.us-west-2.elasticbeanstalk.com": [
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://snap.uaf.edu/tools/future-alaska-precip",
+            "javascript": "return document.querySelectorAll('#ak-map .leaflet-tile').length > 10",
+            "text": "Map loaded."
+        },
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://snap.uaf.edu/tools/future-alaska-precip",
+            "click": "#ak-map",
+            "click_delay": 30,
+            "javascript": "return document.querySelectorAll('#pf-data-tables tr').length > 10",
+            "text": "Table populated."
+        },
+    ],
+    "production-swti.eba-spvr3kbd.us-west-2.elasticbeanstalk.com": [
+        {
+            "column": "webapp",
+            "type": "javascript",
+            "url": "https://accap.uaf.edu/tools/statewide-temperature-index",
+            "javascript": "return document.querySelectorAll('#daily-index .traces').length > 1",
+            "text": "Chart populated."
+        },
+        {
+            "column": "webapp",
+            "type": "csv",
+            "url": "https://accap.uaf.edu/tools/statewide-temperature-index/downloads/statewide_temperature_daily_index.csv",
+            "text": "CSV is valid."
+        },
+    ]
 }
 
 def javascriptTest(check):
@@ -602,7 +689,10 @@ def javascriptTest(check):
         if "click" in check:
             elementToClick = driver.find_element(By.CSS_SELECTOR, check["click"])
             elementToClick.click()
-            time.sleep(10) 
+            if "click_delay" in check:
+                time.sleep(check["click_delay"]) 
+            else:
+                time.sleep(10) 
         return driver.execute_script(check["javascript"])
     except:
         return False
@@ -612,7 +702,7 @@ def csvTest(check):
     try:
         response = requests.get(check["url"])
         no_metadata = []
-        for row in response.text.split("\r\n"):
+        for row in re.split("\r?\n", response.text):
             if len(row) > 0 and row[0] != "#":
                 no_metadata.append(row)
         reader = csv.reader(no_metadata)
