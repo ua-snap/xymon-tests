@@ -2,6 +2,7 @@
 import csv
 import os
 import subprocess
+import random
 import re
 import requests
 import time
@@ -24,8 +25,8 @@ checks = {
             "url": "https://northernclimatereports.org/report/community/AK124#results",
             "javascript": """
                return _.reduce(document.querySelectorAll('.report--temperature tbody td'), (acc, cur) => {
-                    let temperature = parseFloat(cur.textContent.match(/[0-9\.]+(?=\u00b0F)/)[0])
-                    return acc && _.inRange(temperature, 0, 100)
+                    let temperature = parseFloat(cur.textContent.match(/[\-0-9\.]+(?=\u00b0F)/)[0])
+                    return acc && _.inRange(temperature, -60, 100)
                 })
             """,
             "text": "Temperature table values are valid."
@@ -48,13 +49,6 @@ checks = {
                 })
             """,
             "text": "Precipitation table values are valid."
-        },
-        {
-            "column": "webapp",
-            "type": "javascript",
-            "url": "https://northernclimatereports.org/report/community/AK124#results",
-            "javascript": "return document.querySelectorAll('#precip-chart .legend .traces').length > 5",
-            "text": "Precipitation chart is populated."
         },
         {
             "column": "webapp",
@@ -127,56 +121,74 @@ checks = {
         {
             "column": "webapp",
             "type": "csv",
-            "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/temperature/point/65.0628/-146.1627?format=csv",
-            "text": "Temperature API endpoint CSV is valid."
+            "url": "https://earthmaps.io/temperature/point/{lat}/{lon}?format=csv",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
+            "text": "Temperature API endpoint CSV is valid ({lat}, {lon})."
         },
         {
             "column": "webapp",
             "type": "csv",
-            "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/precipitation/point/65.0628/-146.1627?format=csv",
-            "text": "Precipitation API endpoint CSV is valid."
+            "url": "https://earthmaps.io/precipitation/point/{lat}/{lon}?format=csv",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
+            "text": "Precipitation API endpoint CSV is valid ({lat}, {lon})."
         },
         {
             "column": "webapp",
             "type": "csv",
-            "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/permafrost/point/65.0628/-146.1627?format=csv",
-            "text": "Permafrost API endpoint CSV is valid."
+            "url": "https://earthmaps.io/permafrost/point/{lat}/{lon}?format=csv",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
+            "text": "Permafrost API endpoint CSV is valid ({lat}, {lon})."
         },
         {
             "column": "webapp",
             "type": "csv",
-            "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/alfresco/flammability/point/65.0628/-146.1627?format=csv",
-            "text": "Flammability API endpoint CSV is valid."
+            "url": "https://earthmaps.io/alfresco/flammability/point/{lat}/{lon}?format=csv",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
+            "text": "Flammability API endpoint CSV is valid ({lat}, {lon})."
         },
         {
             "column": "webapp",
             "type": "csv",
-            "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/alfresco/veg_type/point/65.0628/-146.1627?format=csv",
-            "text": "Vegetation type API endpoint CSV is valid."
+            "url": "https://earthmaps.io/alfresco/veg_type/point/{lat}/{lon}?format=csv",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
+            "text": "Vegetation type API endpoint CSV is valid ({lat}, {lon})."
         },
         {
             "column": "webapp",
             "type": "json",
-            "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/taspr/point/65.0628/-146.1627",
-            "text": "Temperature and precipitation API endpoint JSON is valid."
+            "url": "https://earthmaps.io/taspr/point/{lat}/{lon}",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
+            "text": "Temperature and precipitation API endpoint JSON is valid ({lat}, {lon})."
         },
         {
             "column": "webapp",
             "type": "json",
-            "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/permafrost/point/65.0628/-146.1627",
-            "text": "Permafrost API endpoint JSON is valid."
+            "url": "https://earthmaps.io/permafrost/point/{lat}/{lon}",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
+            "text": "Permafrost API endpoint JSON is valid ({lat}, {lon})."
         },
         {
             "column": "webapp",
             "type": "json",
-            "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/alfresco/flammability/point/65.0628/-146.1627",
-            "text": "Flammability API endpoint JSON is valid."
+            "url": "https://earthmaps.io/alfresco/flammability/point/{lat}/{lon}",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
+            "text": "Flammability API endpoint JSON is valid ({lat}, {lon})."
         },
         {
             "column": "webapp",
             "type": "json",
-            "url": "http://ec2-52-34-170-176.us-west-2.compute.amazonaws.com/alfresco/veg_type/point/65.0628/-146.1627",
-            "text": "Vegetation type API endpoint JSON is valid."
+            "url": "https://earthmaps.io/alfresco/veg_type/point/{lat}/{lon}",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
+            "text": "Vegetation type API endpoint JSON is valid ({lat}, {lon})."
         }
     ],
     "production-fire-tally.us-west-2.elasticbeanstalk.com": [
@@ -245,14 +257,16 @@ checks = {
         {
             "column": "webapp",
             "type": "javascript",
-            "url": "https://arcticeds.org/climate/temperature/report/63.1429/-154.9583#report",
+            "url": "https://arcticeds.org/climate/temperature/report/{lat}/{lon}#report",
+            "lat_range": [62.70, 67.92],
+            "lon_range": [-158.50, -144.21],
             "javascript": """
                return _.reduce(document.querySelectorAll('#report tbody td'), (acc, cur) => {
-                    let temperature = parseFloat(cur.textContent.match(/[0-9\.]+(?=\u00b0F)/)[0])
+                    let temperature = parseFloat(cur.textContent.match(/[\-0-9\.]+(?=\u00b0F)/)[0])
                     return acc && _.inRange(temperature, -80, 120)
                 })
             """,
-            "text": "Temperature table populated."
+            "text": "Temperature table populated ({lat}, {lon})."
         },
         {
             "column": "webapp",
@@ -366,14 +380,18 @@ checks = {
         {
             "column": "webapp",
             "type": "json",
-            "url": "https://earthmaps.io/seaice/point/67.19/-167.69/",
+            "url": "https://earthmaps.io/seaice/point/{lat}/{lon}/",
+            "lat_range": [70.65, 73.60],
+            "lon_range": [-177.5, -131.41],
             "text": "Sea ice API endpoint JSON is valid."
         },
         {
             "column": "webapp",
             "type": "csv",
-            "url": "https://earthmaps.io/seaice/point/67.19/-167.69?format=csv",
-            "text": "Sea ice API endpoint CSV is valid."
+            "url": "https://earthmaps.io/seaice/point/{lat}/{lon}?format=csv",
+            "lat_range": [70.65, 73.60],
+            "lon_range": [-177.5, -131.41],
+            "text": "Sea ice API endpoint CSV is valid at {lat}, {lon}."
         },
     ],
     "production-wrcc-wind-tool.us-west-2.elasticbeanstalk.com": [
@@ -682,6 +700,21 @@ checks = {
     ]
 }
 
+
+def processCoords(check):
+    if "lat_range" not in check or "lon_range" not in check:
+        return check
+
+    lat_range = check["lat_range"]
+    lon_range = check["lon_range"]
+    coords = {}
+    coords["lat"] = round(random.uniform(lat_range[0], lat_range[1]), 2)
+    coords["lon"] = round(random.uniform(lon_range[0], lon_range[1]), 2)
+    check["url"] = check["url"].format(**coords)
+    check["text"] = check["text"].format(**coords)
+    return check
+
+
 def javascriptTest(check):
     try:
         driver.get(check["url"])
@@ -701,6 +734,8 @@ def javascriptTest(check):
 def csvTest(check):
     try:
         response = requests.get(check["url"])
+        if response.status_code != 200:
+            return False
         no_metadata = []
         for row in re.split("\r?\n", response.text):
             if len(row) > 0 and row[0] != "#":
@@ -715,6 +750,8 @@ def csvTest(check):
 def jsonTest(check):
     try:
         response = requests.get(check["url"])
+        if response.status_code != 200:
+            return False
         results = response.json()
         return True
     except:
@@ -737,6 +774,8 @@ for machine in checks.keys():
         if check["column"] not in colors:
             colors[column] = "green"
             messages[column] = ""
+
+        check = processCoords(check)
 
         if check["type"] == "javascript":
             success = javascriptTest(check)
