@@ -17,7 +17,7 @@ options = Options()
 options.headless = True
 driver = webdriver.Firefox(options=options, executable_path="/usr/bin/geckodriver", service_log_path="/tmp/geckodriver.log")
 
-checks = {
+tests = {
     "northernclimatereports.org": [
         {
             "column": "webapp",
@@ -258,15 +258,16 @@ checks = {
             "column": "webapp",
             "type": "javascript",
             "url": "https://arcticeds.org/climate/temperature/report/{lat}/{lon}#report",
-            "lat_range": [62.70, 67.92],
-            "lon_range": [-158.50, -144.21],
+            "lat_range": [62, 62.5],
+            "lon_range": [-156, -153],
             "javascript": """
                return _.reduce(document.querySelectorAll('#report tbody td'), (acc, cur) => {
                     let temperature = parseFloat(cur.textContent.match(/[\-0-9\.]+(?=\u00b0F)/)[0])
                     return acc && _.inRange(temperature, -80, 120)
                 })
             """,
-            "text": "Temperature table populated ({lat}, {lon})."
+            "text": "Temperature table populated ({lat}, {lon}).",
+            "delay": 60
         },
         {
             "column": "webapp",
@@ -678,9 +679,9 @@ checks = {
             "type": "javascript",
             "url": "https://snap.uaf.edu/tools/future-alaska-precip",
             "click": "#ak-map",
-            "click_delay": 30,
             "javascript": "return document.querySelectorAll('#pf-data-tables tr').length > 10",
-            "text": "Table populated."
+            "text": "Table populated.",
+            "delay": 30
         },
     ],
     "production-swti.eba-spvr3kbd.us-west-2.elasticbeanstalk.com": [
@@ -701,39 +702,40 @@ checks = {
 }
 
 
-def processCoords(check):
-    if "lat_range" not in check or "lon_range" not in check:
-        return check
+def processCoords(test):
+    if "lat_range" not in test or "lon_range" not in test:
+        return test
 
-    lat_range = check["lat_range"]
-    lon_range = check["lon_range"]
+    lat_range = test["lat_range"]
+    lon_range = test["lon_range"]
     coords = {}
     coords["lat"] = round(random.uniform(lat_range[0], lat_range[1]), 2)
     coords["lon"] = round(random.uniform(lon_range[0], lon_range[1]), 2)
-    check["url"] = check["url"].format(**coords)
-    check["text"] = check["text"].format(**coords)
-    return check
+    test["url"] = test["url"].format(**coords)
+    test["text"] = test["text"].format(**coords)
+    return test
 
 
-def javascriptTest(check):
+def javascriptTest(test):
     try:
-        driver.get(check["url"])
-        time.sleep(10)
-        if "click" in check:
-            elementToClick = driver.find_element(By.CSS_SELECTOR, check["click"])
+        if "delay" in test:
+            delay = test["delay"]
+        else:
+            delay = 20
+        driver.get(test["url"])
+        time.sleep(delay)
+        if "click" in test:
+            elementToClick = driver.find_element(By.CSS_SELECTOR, test["click"])
             elementToClick.click()
-            if "click_delay" in check:
-                time.sleep(check["click_delay"]) 
-            else:
-                time.sleep(10) 
-        return driver.execute_script(check["javascript"])
+            time.sleep(delay) 
+        return driver.execute_script(test["javascript"])
     except:
         return False
 
 
-def csvTest(check):
+def csvTest(test):
     try:
-        response = requests.get(check["url"])
+        response = requests.get(test["url"])
         if response.status_code != 200:
             return False
         no_metadata = []
@@ -747,9 +749,9 @@ def csvTest(check):
         return False
 
 
-def jsonTest(check):
+def jsonTest(test):
     try:
-        response = requests.get(check["url"])
+        response = requests.get(test["url"])
         if response.status_code != 200:
             return False
         results = response.json()
@@ -758,39 +760,39 @@ def jsonTest(check):
         return False
 
 
-def urlTest(check):
+def urlTest(test):
     try:
-        response = requests.get(check["url"])
+        response = requests.get(test["url"])
         return response.status_code == 200
     except:
         return False
 
 
-for machine in checks.keys():
+for machine in tests.keys():
     colors = {}
     messages = {}
-    for check in checks[machine]:
-        column = check["column"]
-        if check["column"] not in colors:
+    for test in tests[machine]:
+        column = test["column"]
+        if test["column"] not in colors:
             colors[column] = "green"
             messages[column] = ""
 
-        check = processCoords(check)
+        test = processCoords(test)
 
-        if check["type"] == "javascript":
-            success = javascriptTest(check)
-        elif check["type"] == "json":
-            success = jsonTest(check)
-        elif check["type"] == "csv":
-            success = csvTest(check)
-        elif check["type"] == "url":
-            success = urlTest(check)
+        if test["type"] == "javascript":
+            success = javascriptTest(test)
+        elif test["type"] == "json":
+            success = jsonTest(test)
+        elif test["type"] == "csv":
+            success = csvTest(test)
+        elif test["type"] == "url":
+            success = urlTest(test)
 
         if success == True:
-            messages[column] += "&green " + check["text"] + "\n"
+            messages[column] += "&green " + test["text"] + "\n"
         else:
             colors[column] = "red"
-            messages[column] += "&red " + check["text"] + "\n"
+            messages[column] += "&red " + test["text"] + "\n"
 
     for column in colors.keys():
         date = subprocess.check_output(["date"]).decode("ascii")
