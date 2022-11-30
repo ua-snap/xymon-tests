@@ -17,7 +17,7 @@ Clone this repo into `/opt/xymon/server/ext`. Then, to integrate the custom test
 
 This will run the full suite of tests every 20 minutes.
 
-# Writing tests
+# Tests
 
 Tests are grouped together by the domain name of the server. For example:
 
@@ -50,3 +50,19 @@ The dictionary keys for each test are described in the following table:
 | lon_range   | No                              | If set, choose a random longitude between the range provided. This will replace `{lon}` in the `url` and `text` values. |
 | click       | No                              | Selector of a DOM element to click before running a JavaScript test. |
 | delay       | No                              | Override the default number of seconds to wait between loading the page and performing a JavaScript test. |
+
+## Writing JavaScript tests
+
+As described in the table above, you must provide a chunk of JavaScript code for any test of type `javascript`. This chunk of JavaScript code must return a boolean value. For example, here's a chunk of JavaScript that is used to count the number of legend items in a Plotly legend, and returns true if there are over 5 items in the legend (and false otherwise):
+
+```
+return document.querySelectorAll('#temp-chart .legend .traces').length > 5
+```
+
+You can run this same chunk of JavaScript code in your browser's console. Simply remove the `return` statement at the beginning, and run this in your browser console:
+
+```
+document.querySelectorAll('#temp-chart .legend .traces').length > 5
+```
+
+This means you can use your browser's console to develop new tests. Just make sure to add `return` to the beginning of the chunk of JavaScript when adding it to `snap.py`, as this is needed to return the result from Selenium's web driver.
