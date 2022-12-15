@@ -438,7 +438,8 @@ tests = {
             "type": "javascript",
             "url": "https://snap.uaf.edu/tools/gardenhelper",
             "javascript": "return document.querySelectorAll('#tcharts g').length > 100",
-            "text": "Growing season chart populated."
+            "text": "Growing season chart populated.",
+            "delay": 60
         },
         {
             "column": "webapp",
@@ -447,6 +448,7 @@ tests = {
             "click": ".tab:nth-of-type(2)",
             "javascript": "return document.querySelectorAll('#acharts path').length > 1000",
             "text": "Annual minimums chart populated."
+            "delay": 60
         },
         {
             "column": "webapp",
@@ -455,6 +457,7 @@ tests = {
             "click": ".tab:nth-of-type(3)",
             "javascript": "return document.querySelectorAll('#ccharts .legendlines').length > 10",
             "text": "Growing degree days chart populated."
+            "delay": 60
         },
     ],
     "production-alaska-wildfires.s3-website-us-west-2.amazonaws.com": [
