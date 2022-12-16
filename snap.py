@@ -382,7 +382,7 @@ tests = {
             "column": "webapp",
             "type": "json",
             "url": "https://earthmaps.io/seaice/point/{lat}/{lon}/",
-            "lat_range": [70.65, 73.60],
+            "lat_range": [71.50, 73.60],
             "lon_range": [-177.5, -131.41],
             "text": "Sea ice API endpoint JSON is valid."
         },
@@ -390,7 +390,7 @@ tests = {
             "column": "webapp",
             "type": "csv",
             "url": "https://earthmaps.io/seaice/point/{lat}/{lon}?format=csv",
-            "lat_range": [70.65, 73.60],
+            "lat_range": [71.50, 73.60],
             "lon_range": [-177.5, -131.41],
             "text": "Sea ice API endpoint CSV is valid at {lat}, {lon}."
         },
