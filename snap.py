@@ -146,8 +146,8 @@ tests = {
             "column": "webapp",
             "type": "csv",
             "url": "https://earthmaps.io/alfresco/flammability/point/{lat}/{lon}?format=csv",
-            "lat_range": [62.70, 67.92],
-            "lon_range": [-158.50, -144.21],
+            "lat_range": [63.72, 64.40],
+            "lon_range": [-157.15, -154.20],
             "text": "Flammability API endpoint CSV is valid ({lat}, {lon})."
         },
         {
@@ -178,8 +178,8 @@ tests = {
             "column": "webapp",
             "type": "json",
             "url": "https://earthmaps.io/alfresco/flammability/point/{lat}/{lon}",
-            "lat_range": [62.70, 67.92],
-            "lon_range": [-158.50, -144.21],
+            "lat_range": [63.72, 64.40],
+            "lon_range": [-157.15, -154.20],
             "text": "Flammability API endpoint JSON is valid ({lat}, {lon})."
         },
         {
