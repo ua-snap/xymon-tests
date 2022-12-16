@@ -447,7 +447,7 @@ tests = {
             "url": "https://snap.uaf.edu/tools/gardenhelper",
             "click": ".tab:nth-of-type(2)",
             "javascript": "return document.querySelectorAll('#acharts path').length > 1000",
-            "text": "Annual minimums chart populated."
+            "text": "Annual minimums chart populated.",
             "delay": 60
         },
         {
@@ -456,7 +456,7 @@ tests = {
             "url": "https://snap.uaf.edu/tools/gardenhelper",
             "click": ".tab:nth-of-type(3)",
             "javascript": "return document.querySelectorAll('#ccharts .legendlines').length > 10",
-            "text": "Growing degree days chart populated."
+            "text": "Growing degree days chart populated.",
             "delay": 60
         },
     ],
