@@ -516,6 +516,18 @@ tests = {
             "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&styles=flammability&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
             "text": "Projected flammability map layer accessible."
         },
+        {
+            "column": "webapp",
+            "type": "json",
+            "url": "https://fire-shim.mapventure.org/fires.geojson",
+            "text": "Fire features from fire shim returns valid JSON."
+        },
+        {
+            "column": "webapp",
+            "type": "json",
+            "url": "https://fire-shim.mapventure.org/viirs.geojson",
+            "text": "Hotspots (VIIRS) from fire shim returns valid JSON."
+        },
     ],
     "production22222.us-west-2.elasticbeanstalk.com": [
         {
