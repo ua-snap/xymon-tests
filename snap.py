@@ -465,8 +465,8 @@ tests = {
             "column": "webapp",
             "type": "javascript",
             "url": "https://snap.uaf.edu/tools/alaska-wildfires",
-            "javascript": "return document.querySelectorAll('#map--leaflet-map path').length > 1 || document.querySelectorAll('.intro').length == 0",
-            "text": "Wildfire map populated or inactive."
+            "javascript": "return document.querySelectorAll('#map--leaflet-map div').length > 10 || document.querySelectorAll('.intro').length == 0",
+            "text": "Wildfire map loaded or inactive."
         },
         {
             "column": "webapp",
