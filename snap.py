@@ -267,7 +267,7 @@ tests = {
                 })
             """,
             "text": "Temperature table populated ({lat}, {lon}).",
-            "delay": 60
+            "delay": 300
         },
         {
             "column": "webapp",
