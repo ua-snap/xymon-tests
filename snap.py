@@ -271,7 +271,7 @@ tests = {
                 })
             """,
             "text": "Temperature table populated ({lat}, {lon}).",
-            "delay": 240
+            "delay": 240,
         },
         {
             "column": "webapp",
@@ -452,7 +452,7 @@ tests = {
             "click": ".tab:nth-of-type(2)",
             "javascript": "return document.querySelectorAll('#acharts path').length > 1000",
             "text": "Annual minimums chart populated.",
-            "delay": 60,
+            "delay": 120,
         },
         {
             "column": "webapp",
