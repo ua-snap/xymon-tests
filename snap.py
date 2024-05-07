@@ -379,13 +379,6 @@ tests = {
         },
         {
             "column": "webapp",
-            "type": "javascript",
-            "url": "https://arcticeds.org/maps",
-            "javascript": "return document.querySelectorAll('#temperature_indices .leaflet-tile-loaded').length > 20",
-            "text": "Temperature indices map loaded.",
-        },
-        {
-            "column": "webapp",
             "type": "url",
             "url": "https://apollo.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=freezing_index&styles=arctic_eds_freezing_index_future&format=image%2Fpng&transparent=true&version=1.3.0&id=ncarccsm4_freezing_index_midcentury&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Projected freezing index map layer accessible.",
