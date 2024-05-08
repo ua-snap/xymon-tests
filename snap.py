@@ -377,24 +377,6 @@ tests = {
             "url": "https://apollo.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=annual_mean_temp&styles=temp_midcentury_era&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_annual_mean_temp&width=256&height=256&crs=EPSG%3A3338&bbox=70586,969097,594874,1493385",
             "text": "Projected mean annual temperature map layer accessible.",
         },
-        {
-            "column": "webapp",
-            "type": "url",
-            "url": "https://apollo.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=freezing_index&styles=arctic_eds_freezing_index_future&format=image%2Fpng&transparent=true&version=1.3.0&id=ncarccsm4_freezing_index_midcentury&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
-            "text": "Projected freezing index map layer accessible.",
-        },
-        {
-            "column": "webapp",
-            "type": "url",
-            "url": "https://apollo.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=thawing_index&styles=arctic_eds_thawing_index_future&format=image%2Fpng&transparent=true&version=1.3.0&id=ncarccsm4_thawing_index_midcentury&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
-            "text": "Projected thawing index map layer accessible.",
-        },
-        {
-            "column": "webapp",
-            "type": "url",
-            "url": "https://apollo.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=heating_degree_days&styles=arctic_eds_heating_degree_days_future&format=image%2Fpng&transparent=true&version=1.3.0&id=ncarccsm4_heating_degree_days&dim_model=2&dim_era=2&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
-            "text": "Projected heating degree days map layer accessible.",
-        },
     ],
     "seaiceatlas.snap.uaf.edu": [
         {
