@@ -697,24 +697,6 @@ tests = {
             "text": "Historical fires map layer accessible.",
         },
     ],
-    "production-dot-precip-dash.us-west-2.elasticbeanstalk.com": [
-        {
-            "column": "webapp",
-            "type": "javascript",
-            "url": "https://snap.uaf.edu/tools/future-alaska-precip",
-            "javascript": "return document.querySelectorAll('#ak-map .leaflet-tile').length > 10",
-            "text": "Map loaded.",
-        },
-        {
-            "column": "webapp",
-            "type": "javascript",
-            "url": "https://snap.uaf.edu/tools/future-alaska-precip",
-            "click": "#ak-map",
-            "javascript": "return document.querySelectorAll('#pf-data-tables tr').length > 10",
-            "text": "Table populated.",
-            "delay": 30,
-        },
-    ],
     "production-swti.eba-spvr3kbd.us-west-2.elasticbeanstalk.com": [
         {
             "column": "webapp",
