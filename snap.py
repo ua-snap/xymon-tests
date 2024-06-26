@@ -544,6 +544,14 @@ tests = {
             "url": "https://fire-shim.mapventure.org/viirs.geojson",
             "text": "Hotspots (VIIRS) from fire shim returns valid JSON.",
         },
+        {
+            "column": "webapp",
+            "type": "json",
+            "url": "https://earthmaps.io/fire/point/{lat}/{lon}",
+            "lat_range": [62, 62.5],
+            "lon_range": [-156, -153],
+            "text": "Fire API endpoint JSON is valid ({lat}, {lon}).",
+        },
     ],
     "production22222.us-west-2.elasticbeanstalk.com": [
         {
