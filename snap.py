@@ -476,19 +476,74 @@ tests = {
             "delay": 60,
         },
     ],
-    "production-alaska-wildfires.s3-website-us-west-2.amazonaws.com": [
+    "alaskawildfires.org": [
         {
             "column": "webapp",
             "type": "javascript",
-            "url": "https://snap.uaf.edu/tools/alaska-wildfires",
+            "url": "https://alaskawildfires.org",
             "javascript": "return document.querySelectorAll('#map--leaflet-map div').length > 10 || document.querySelectorAll('.intro').length == 0",
             "text": "Wildfire map loaded or inactive.",
         },
         {
             "column": "webapp",
+            "type": "javascript",
+            "url": "https://snap.uaf.edu/tools/alaska-wildfires",
+            "javascript": "return document.querySelectorAll('#map--leaflet-map div').length > 10 || document.querySelectorAll('.intro').length == 0",
+            "text": "Wildfire map redirects to https://alaskawildfires.org.",
+        },
+        {
+            "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=postgis_lightning&styles=&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=postgis_lightning&width=256&height=256&crs=EPSG%3A3338&bbox=594874,969097506,1119162,1493385",
+            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Afire_points&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "text": "Fire points map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Afire_polygons&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "text": "Fire polygons map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aviirs_hotspots&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "text": "VIIRS hotspots map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Alightning_strikes&styles=&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
             "text": "Lightning strikes map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Apurple_air&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "text": "Purple Air AQI sensors map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_6_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "text": "AQI 6 hour forecast map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_12_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "text": "AQI 12 hour forecast map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_24_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "text": "AQI 24 hour forecast map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_48_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "text": "AQI 48 hour forecast map layer accessible.",
         },
         {
             "column": "webapp",
@@ -531,18 +586,6 @@ tests = {
             "type": "url",
             "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&styles=flammability&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
             "text": "Projected flammability map layer accessible.",
-        },
-        {
-            "column": "webapp",
-            "type": "json",
-            "url": "https://fire-shim.mapventure.org/fires.geojson",
-            "text": "Fire features from fire shim returns valid JSON.",
-        },
-        {
-            "column": "webapp",
-            "type": "json",
-            "url": "https://fire-shim.mapventure.org/viirs.geojson",
-            "text": "Hotspots (VIIRS) from fire shim returns valid JSON.",
         },
         {
             "column": "webapp",
