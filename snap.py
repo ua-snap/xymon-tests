@@ -7,19 +7,29 @@ import re
 import requests
 import time
 from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
 
 xymon = os.getenv("XYMON")
 xymsrv = os.getenv("XYMSRV")
 
 options = Options()
 options.headless = True
+
+# Load enough of the page to interact with it.
+# Don't wait for straggler HTTP requests.
+caps = DesiredCapabilities().FIREFOX
+caps["pageLoadStrategy"] = "eager"
+
 driver = webdriver.Firefox(
+    desired_capabilities=caps,
     options=options,
     executable_path="/usr/bin/geckodriver",
     service_log_path="/tmp/geckodriver.log",
 )
+actions = ActionChains(driver)
 
 tests = {
     "northernclimatereports.org": [
@@ -378,19 +388,21 @@ tests = {
             "text": "Projected mean annual temperature map layer accessible.",
         },
     ],
-    "seaiceatlas.snap.uaf.edu": [
+    "seaiceatlas.org": [
         {
             "column": "webapp",
             "type": "javascript",
-            "url": "https://www.snap.uaf.edu/tools/sea-ice-atlas",
+            "url": "https://seaiceatlas.org",
             "javascript": "return document.querySelectorAll('#map .leaflet-tile-loaded').length > 20",
             "text": "Sea ice map loaded.",
         },
         {
             "column": "webapp",
             "type": "javascript",
-            "url": "https://www.snap.uaf.edu/tools/sea-ice-atlas",
+            "url": "https://seaiceatlas.org",
             "click": "#map",
+            "click_x_offset": 800,
+            "click_y_offset": 100,
             "javascript": "return document.querySelectorAll('.js-line').length > 0",
             "text": "Sea ice chart populated.",
         },
@@ -846,8 +858,15 @@ def javascriptTest(test):
         driver.get(test["url"])
         time.sleep(delay)
         if "click" in test:
-            elementToClick = driver.find_element(By.CSS_SELECTOR, test["click"])
-            elementToClick.click()
+            element = driver.find_element(By.CSS_SELECTOR, test["click"])
+            # Precisely position click inside element if necessary.
+            if "click_x_offset" in test and "click_y_offset" in test:
+                x_offset = test["click_x_offset"]
+                y_offset = test["click_y_offset"]
+                driver.execute_script("arguments[0].scrollIntoView();", element)
+                actions.move_to_element_with_offset(element, x_offset, y_offset).click().perform()
+            else:
+                element.click()
             time.sleep(delay)
         return driver.execute_script(test["javascript"])
     except:
