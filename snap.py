@@ -358,7 +358,7 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://apollo.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=annual_precip_totals_mm&styles=precip_mm_midcentury_era&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_precip&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://maps.earthmaps.io/rasdaman/ows?service=WMS&request=GetMap&layers=annual_precip_totals_mm&styles=precip_mm_midcentury_era&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_precip&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Projected precipitation map layer accessible.",
         },
         {
@@ -371,7 +371,7 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=permafrost_beta%3Aobu_pf_extent&styles=&format=image%2Fpng&transparent=true&version=1.3.0&id=pfextent_obu&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=permafrost_beta%3Aobu_pf_extent&styles=&format=image%2Fpng&transparent=true&version=1.3.0&id=pfextent_obu&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Permafrost extent (Obu) map layer accessible.",
         },
         {
@@ -384,7 +384,7 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://apollo.snap.uaf.edu/rasdaman/ows?service=WMS&request=GetMap&layers=annual_mean_temp&styles=temp_midcentury_era&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_annual_mean_temp&width=256&height=256&crs=EPSG%3A3338&bbox=70586,969097,594874,1493385",
+            "url": "https://maps.earthmaps.io/rasdaman/ows?service=WMS&request=GetMap&layers=annual_mean_temp&styles=temp_midcentury_era&format=image%2Fpng&transparent=true&version=1.3.0&id=midcentury_era_annual_mean_temp&width=256&height=256&crs=EPSG%3A3338&bbox=70586,969097,594874,1493385",
             "text": "Projected mean annual temperature map layer accessible.",
         },
     ],
@@ -506,97 +506,97 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Afire_points&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Afire_points&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
             "text": "Fire points map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Afire_polygons&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Afire_polygons&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
             "text": "Fire polygons map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aviirs_hotspots&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aviirs_hotspots&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
             "text": "VIIRS hotspots map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Alightning_strikes&styles=&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Alightning_strikes&styles=&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
             "text": "Lightning strikes map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Apurple_air&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Apurple_air&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
             "text": "Purple Air AQI sensors map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_6_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_6_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
             "text": "AQI 6 hour forecast map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_12_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_12_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
             "text": "AQI 12 hour forecast map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_24_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_24_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
             "text": "AQI 24 hour forecast map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_48_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/alaska_wildfires/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aaqi_forecast_48_hrs&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=false&crs=EPSG%3A3338&width=256&height=256&bbox=594874,1493385,1119162,2017673",
             "text": "AQI 48 hour forecast map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aspruceadj_3338&styles=alaska_wildfires%3Aspruce_adjective&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=spruceadj_3338&width=256&height=256&crs=EPSG%3A3338&bbox=-453701,444809,70586,969097",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aspruceadj_3338&styles=alaska_wildfires%3Aspruce_adjective&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=spruceadj_3338&width=256&height=256&crs=EPSG%3A3338&bbox=-453701,444809,70586,969097",
             "text": "Fire danger ratings map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Asnow_cover_3338&styles=alaska_wildfires%3Asnow_cover&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=snow_cover_3338&width=256&height=256&crs=EPSG%3A3338&bbox=-453701,969097,70586,1493385",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Asnow_cover_3338&styles=alaska_wildfires%3Asnow_cover&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=snow_cover_3338&width=256&height=256&crs=EPSG%3A3338&bbox=-453701,969097,70586,1493385",
             "text": "Snow cover map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalaska_landcover_2015&styles=&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alaska_landcover_2015&width=256&height=256&crs=EPSG%3A3338&bbox=-453701,969097,70586,1493385",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalaska_landcover_2015&styles=&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alaska_landcover_2015&width=256&height=256&crs=EPSG%3A3338&bbox=-453701,969097,70586,1493385",
             "text": "Land cover types map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Alightning-monthly-climatology&styles=&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=2015-5-01T00%3A00%3A00Z&id=gridded_lightning&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Alightning-monthly-climatology&styles=&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=2015-5-01T00%3A00%3A00Z&id=gridded_lightning&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Historical lightning strikes map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=historical_fire_perimiters&styles=historical_fire_polygon_buckets&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=historical_fire_perimiters&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=historical_fire_perimiters&styles=historical_fire_polygon_buckets&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=historical_fire_perimiters&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Historical fire perimeters map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalfresco_relative_flammability_cru_ts40_historical_1900_1999_iem&styles=flammability&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_cru_ts40_historical_1900_1999_iem&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalfresco_relative_flammability_cru_ts40_historical_1900_1999_iem&styles=flammability&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_cru_ts40_historical_1900_1999_iem&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
             "text": "Historical modeled flammability map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&styles=flammability&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&styles=flammability&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
             "text": "Projected flammability map layer accessible.",
         },
         {
@@ -717,7 +717,7 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=nasa_above%3Awintertemp_2010s_tcc&styles=&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=nasa_above%3Awintertemp_2010s_tcc&styles=&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Winter temperature (2010) map layer accessible.",
         },
         {
@@ -730,7 +730,7 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=nasa_above%3AOct_snowdayfraction_2010s_tcc_reprojected&styles=&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=nasa_above%3AOct_snowdayfraction_2010s_tcc_reprojected&styles=&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Snow observations (2010) map layer accessible.",
         },
         {
@@ -743,7 +743,7 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=nasa_above%3AJuly_permafrost_2m_2010s_tcc&styles=&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=nasa_above%3AJuly_permafrost_2m_2010s_tcc&styles=&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Permafrost (2010) map layer accessible.",
         },
         {
@@ -756,7 +756,7 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.mapventure.org/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Ahistorical_fire_perimiters&styles=fire_history_70s_2010s&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Ahistorical_fire_perimiters&styles=fire_history_70s_2010s&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Historical fires map layer accessible.",
         },
     ],
@@ -828,7 +828,7 @@ tests = {
         {
             "column": "webapp",
             "type": "json",
-            "url": "https://gs.mapventure.org/geoserver/fish_and_fire/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fish_and_fire%3AAOIs&outputFormat=application%2Fjson&PropertyName=(AOI_Name_,Category)",
+            "url": "https://gs.earthmaps.io/geoserver/fish_and_fire/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fish_and_fire%3AAOIs&outputFormat=application%2Fjson&PropertyName=(AOI_Name_,Category)",
             "text": "GeoServer returns valid JSON from shapefile.",
         },
     ],
