@@ -566,12 +566,6 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Asnow_cover_3338&styles=alaska_wildfires%3Asnow_cover&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=snow_cover_3338&width=256&height=256&crs=EPSG%3A3338&bbox=-453701,969097,70586,1493385",
-            "text": "Snow cover map layer accessible.",
-        },
-        {
-            "column": "webapp",
-            "type": "url",
             "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalaska_landcover_2015&styles=&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alaska_landcover_2015&width=256&height=256&crs=EPSG%3A3338&bbox=-453701,969097,70586,1493385",
             "text": "Land cover types map layer accessible.",
         },
@@ -590,14 +584,32 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalfresco_relative_flammability_cru_ts40_historical_1900_1999_iem&styles=flammability&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_cru_ts40_historical_1900_1999_iem&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
+            "url": "https://maps.earthmaps.io/rasdaman/ows?service=WMS&request=GetMap&layers=alfresco_relative_flammability_30yr&styles=alaska_wildfire_explorer_historical&format=image%2Fpng&transparent=true&version=1.3.0&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_cru_ts40_historical_1950_2008_iem&dim_model=0&dim_scenario=0&width=256&height=256&crs=EPSG%3A3338&bbox=70586.06568358204,1493385.882955057,594874.0656835823,2017673.8829550678",
             "text": "Historical modeled flammability map layer accessible.",
         },
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Aalfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&styles=flammability&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_NCAR-CCSM4_rcp85_2000_2099&width=256&height=256&crs=EPSG%3A3338&bbox=594874,1493385,1119162,2017673",
+            "url": "https://maps.earthmaps.io/rasdaman/ows?service=WMS&request=GetMap&layers=alfresco_relative_flammability_30yr&styles=alaska_wildfire_explorer_projected&format=image%2Fpng&transparent=true&version=1.3.0&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=alfresco_relative_flammability_NCAR-CCSM4_rcp85_2070_2099&dim_model=6&dim_scenario=3&width=256&height=256&crs=EPSG%3A3338&bbox=70586.06568358204,1493385.882955057,594874.0656835823,2017673.8829550678",
             "text": "Projected flammability map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=all_boundaries%3Aall_gmus&styles=&format=image%2Fpng&transparent=true&version=1.3.0&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=gmu&dim_model=&dim_scenario=&width=256&height=256&crs=EPSG%3A3338&bbox=-453701.9343164183,969097.8829550534,70586.06568358072,1493385.8829550538",
+            "text": "Game Management Units map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=all_boundaries%3Aall_protected_areas&styles=&format=image%2Fpng&transparent=true&version=1.3.0&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=protected_areas&dim_model=&dim_scenario=&width=256&height=256&crs=EPSG%3A3338&bbox=70586.06568358286,969097.882955058,594874.0656835833,1493385.8829550613",
+            "text": "Protected Areas map layer accessible.",
+        },
+        {
+            "column": "webapp",
+            "type": "url",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=all_boundaries%3Aall_fire_zones&styles=&format=image%2Fpng&transparent=true&version=1.3.0&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=fire_zones&dim_model=&dim_scenario=&width=256&height=256&crs=EPSG%3A3338&bbox=70586.06568358286,969097.882955058,594874.0656835833,1493385.8829550613",
+            "text": "Fire Management Units map layer accessible.",
         },
         {
             "column": "webapp",
