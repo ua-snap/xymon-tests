@@ -851,8 +851,8 @@ def processCoords(test):
     if "lat_range" not in test or "lon_range" not in test:
         return test
 
-    # Generate coordinates once for arcticeds.org tests
     if "arcticeds.org" in test["url"]:
+        # Generate coordinates once for arcticeds.org tests
         if not hasattr(processCoords, "arcticeds_coords"):
             lat_range = test["lat_range"]
             lon_range = test["lon_range"]
