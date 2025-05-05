@@ -851,11 +851,24 @@ def processCoords(test):
     if "lat_range" not in test or "lon_range" not in test:
         return test
 
-    lat_range = test["lat_range"]
-    lon_range = test["lon_range"]
-    coords = {}
-    coords["lat"] = round(random.uniform(lat_range[0], lat_range[1]), 2)
-    coords["lon"] = round(random.uniform(lon_range[0], lon_range[1]), 2)
+    # Generate coordinates once for arcticeds.org tests
+    if "arcticeds.org" in test["url"]:
+        if not hasattr(processCoords, "arcticeds_coords"):
+            lat_range = test["lat_range"]
+            lon_range = test["lon_range"]
+            processCoords.arcticeds_coords = {
+                "lat": round(random.uniform(lat_range[0], lat_range[1]), 2),
+                "lon": round(random.uniform(lon_range[0], lon_range[1]), 2),
+            }
+        coords = processCoords.arcticeds_coords
+    else:
+        lat_range = test["lat_range"]
+        lon_range = test["lon_range"]
+        coords = {
+            "lat": round(random.uniform(lat_range[0], lat_range[1]), 2),
+            "lon": round(random.uniform(lon_range[0], lon_range[1]), 2),
+        }
+
     test["url"] = test["url"].format(**coords)
     test["text"] = test["text"].format(**coords)
     return test
@@ -876,7 +889,9 @@ def javascriptTest(test):
                 x_offset = test["click_x_offset"]
                 y_offset = test["click_y_offset"]
                 driver.execute_script("arguments[0].scrollIntoView();", element)
-                actions.move_to_element_with_offset(element, x_offset, y_offset).click().perform()
+                actions.move_to_element_with_offset(
+                    element, x_offset, y_offset
+                ).click().perform()
             else:
                 element.click()
             time.sleep(delay)
