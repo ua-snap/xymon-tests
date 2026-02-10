@@ -578,7 +578,7 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=historical_fire_perimiters&styles=historical_fire_polygon_buckets&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=historical_fire_perimiters&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=historical_fire_perimeters&styles=historical_fire_polygon_buckets&format=image%2Fpng&transparent=true&version=1.3&continuousWorld=true&tiled=true&srs=EPSG%3A3338&time=&id=historical_fire_perimeters&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Historical fire perimeters map layer accessible.",
         },
         {
@@ -768,7 +768,7 @@ tests = {
         {
             "column": "webapp",
             "type": "url",
-            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Ahistorical_fire_perimiters&styles=fire_history_70s_2010s&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
+            "url": "https://gs.earthmaps.io/geoserver/wms?service=WMS&request=GetMap&layers=alaska_wildfires%3Ahistorical_fire_perimeters&styles=fire_history_70s_2010s&format=image%2Fpng&transparent=true&version=1.3&srs=EPSG%3A3338&tiled=true&continuousWorld=true&width=256&height=256&crs=EPSG%3A3338&bbox=70586,1493385,594874,2017673",
             "text": "Historical fires map layer accessible.",
         },
     ],
