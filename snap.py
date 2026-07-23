@@ -6,20 +6,42 @@ import random
 import re
 import requests
 import time
+import sys
+import fcntl
+
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+
+# Prevent overlapping runs of the script with a lock file.
+LOCKFILE = "/tmp/snap.py.lock"
+lock_fp = open(LOCKFILE, "w")
+try:
+    fcntl.flock(lock_fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
+except IOError:
+    sys.exit(0)  # another instance running — exit quietly
+
 xymon = os.getenv("XYMON")
 xymsrv = os.getenv("XYMSRV")
+
+DEFAULT_REQUEST_TIMEOUT = 600  # 10 minutes max per HTTP request
+
+session = requests.Session()
+adapter = HTTPAdapter(
+    max_retries=Retry(total=0, connect=0, read=0, redirect=0, status=0)
+)
+session.mount("http://", adapter)
+session.mount("https://", adapter)
 
 options = Options()
 options.headless = True
 
-# Load enough of the page to interact with it.
-# Don't wait for straggler HTTP requests.
 caps = DesiredCapabilities().FIREFOX
 caps["pageLoadStrategy"] = "eager"
 
@@ -29,6 +51,8 @@ driver = webdriver.Firefox(
     executable_path="/usr/bin/geckodriver",
     service_log_path="/tmp/geckodriver.log",
 )
+
+driver.set_page_load_timeout(900)
 actions = ActionChains(driver)
 
 tests = {
@@ -306,7 +330,7 @@ tests = {
             "lon_range": [-156, -153],
             "javascript": "return document.querySelectorAll('.precipitation table td').length > 300",
             "text": "Precipitation section loaded ({lat}, {lon}).",
-            "delay": 480,
+            "delay": 900,
         },
         {
             "column": "webapp",
@@ -852,6 +876,7 @@ tests = {
             "lat_range": [62.70, 67.92],
             "lon_range": [-158.50, -144.21],
             "text": "CMIP6 tas API endpoint JSON is valid ({lat}, {lon}).",
+            "delay": 90,
         },
         {
             "column": "webapp",
@@ -910,7 +935,6 @@ def processCoords(test):
         return test
 
     if "arcticeds.org" in test["url"]:
-        # Generate coordinates once for arcticeds.org tests
         if not hasattr(processCoords, "arcticeds_coords"):
             lat_range = test["lat_range"]
             lon_range = test["lon_range"]
@@ -934,75 +958,88 @@ def processCoords(test):
 
 def javascriptTest(test):
     try:
-        if "delay" in test:
-            delay = test["delay"]
-        else:
-            delay = 20
+        delay = test.get("delay", 20)
         driver.get(test["url"])
         time.sleep(delay)
+
         if "click" in test:
             element = driver.find_element(By.CSS_SELECTOR, test["click"])
-            # Precisely position click inside element if necessary.
+
             if "click_x_offset" in test and "click_y_offset" in test:
-                x_offset = test["click_x_offset"]
-                y_offset = test["click_y_offset"]
                 driver.execute_script("arguments[0].scrollIntoView();", element)
                 actions.move_to_element_with_offset(
-                    element, x_offset, y_offset
+                    element, test["click_x_offset"], test["click_y_offset"]
                 ).click().perform()
             else:
                 element.click()
+
             time.sleep(delay)
+
         return driver.execute_script(test["javascript"])
-    except:
+
+    except Exception:
         return False
 
 
 def csvTest(test):
     try:
-        response = requests.get(test["url"])
+        timeout = test.get("timeout", DEFAULT_REQUEST_TIMEOUT)
+        response = session.get(test["url"], timeout=timeout)
+
         if response.status_code != 200:
             return False
+
         no_metadata = []
         for row in re.split("\r?\n", response.text):
             if len(row) > 0 and row[0] != "#":
                 no_metadata.append(row)
+
         reader = csv.reader(no_metadata)
         next(reader)
         return True
-    except:
+
+    except Exception:
         return False
 
 
 def jsonTest(test):
     try:
-        response = requests.get(test["url"])
+        timeout = test.get("timeout", DEFAULT_REQUEST_TIMEOUT)
+        response = session.get(test["url"], timeout=timeout)
+
         if response.status_code != 200:
             return False
-        results = response.json()
+
+        response.json()
         return True
-    except:
+
+    except Exception:
         return False
 
 
 def urlTest(test):
     try:
-        response = requests.get(test["url"])
+        timeout = test.get("timeout", DEFAULT_REQUEST_TIMEOUT)
+        response = session.get(test["url"], timeout=timeout)
         return response.status_code == 200
-    except:
+    except Exception:
         return False
 
 
 for machine in tests.keys():
     colors = {}
     messages = {}
+
     for test in tests[machine]:
         column = test["column"]
-        if test["column"] not in colors:
+
+        if column not in colors:
             colors[column] = "green"
             messages[column] = ""
 
         test = processCoords(test)
+
+        success = False
 
         if test["type"] == "javascript":
             success = javascriptTest(test)
@@ -1013,7 +1050,7 @@ for machine in tests.keys():
         elif test["type"] == "url":
             success = urlTest(test)
 
-        if success == True:
+        if success:
             messages[column] += "&green " + test["text"] + "\n"
         else:
             colors[column] = "red"
@@ -1021,10 +1058,10 @@ for machine in tests.keys():
 
     for column in colors.keys():
         date = subprocess.check_output(["date"]).decode("ascii")
-        machine_safe = machine.replace(".", ",")
         status = "status {}.{} {} {}\n{}".format(
             machine, column, colors[column], date, messages[column]
         )
         subprocess.call([xymon, xymsrv, status])
 
 driver.quit()
+
