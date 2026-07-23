@@ -927,6 +927,30 @@ tests = {
             "text": "Landfast sea ice extent API endpoint JSON is valid ({lat}, {lon}).",
         },
     ],
+    "powlandslides.org": [
+        {
+            "column": "webapp",
+            "type": "json",
+            "url": "https://api.powlandslides.org/landslide/AK91",
+            "text": "Landslide risk API endpoint JSON is valid.",
+        },
+    ],
+    "futurehydrology.org": [
+        {
+            "column": "webapp",
+            "type": "json",
+            "url": "https://earthmaps.io/conus_hydrology/hydroviz/50563",
+            "text": "CONUS API endpoint JSON is valid.",
+            "delay": 60,
+        },
+        {
+            "column": "webapp",
+            "type": "json",
+            "url": "https://earthmaps.io/arctic_hydrology/hydroviz/81000004",
+            "text": "Alaska API endpoint JSON is valid.",
+            "delay": 60,
+        },
+    ],
 }
 
 
